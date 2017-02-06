@@ -36,6 +36,7 @@ class DevicesSimulated extends DevicesBase {
       let c2 = 15 + (new Date()).getSeconds() / 60 * 15;
       let fakeData = {
         simulated : true,
+        timestamp : new Date(),
         DHT22 : {
           temperature_C : c1,
           temperature_F : c1 * 9 / 5 + 32,
@@ -53,6 +54,12 @@ class DevicesSimulated extends DevicesBase {
         TSL2561 : {
           lux : 3000 + 250 * Math.random(),
           timestamp : '2016-10-09T23:41:15.107Z'
+        },
+        DS18b20_1 : {
+          temperature_C : 42.3477,
+        },
+        DS18b20_2 : {
+          temperature_C : 22.3477,
         },
         GPS : {
           lat : 37.444795 + Math.random() * 0.000001,

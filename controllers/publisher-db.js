@@ -81,13 +81,23 @@ class DatabasePublisher {
     this.deviceManager.readSensors()
       .then((data) => {
         const sensorData = new SensorData();
-
         sensorData.deviceId     = this.deviceId;
-        sensorData.timestamp    = _.get(data, 'GPS.timestamp', undefined);
-        sensorData.temperatureC = _.get(data, 'DHT22.temperature_C', 0);
-        sensorData.humidity     = _.get(data, 'DHT22.humidity', 0);
-        sensorData.pressureinHg = _.get(data, 'BME280.pressure_inHg', 0);
-        sensorData.lux          = _.get(data, 'TSL2561.lux', 0);
+        sensorData.timestamp    = _.get(data, 'timestamp', undefined);
+        sensorData.created_at   = new Date();
+        sensorData.modified_at  = new Date();
+        sensorData.name         = "fixed";
+        // BME280
+        sensorData.properties.temperature_air_outside = _.get(data, 'BME280.temperature_C', 0);
+        sensorData.properties.humidity_air_outside    = _.get(data, 'BME280.humidity', 0);
+        sensorData.properties.pressure_air_outside    = _.get(data, 'BME280.pressure_hPa', 0);
+        // TSL2561
+        sensorData.properties.lux_outside             = _.get(data, 'TSL2561.lux', 0);
+        // DS1820b's 
+        sensorData.properties.temperature_wall        = _.get(data, 'DS18b20_1.temperature_C', 0);
+        sensorData.properties.temperature_wall_inside = _.get(data, 'DS18b20_2.temperature_C', 0);
+        // DHT22
+        sensorData.properties.temperature_air_inside = _.get(data, 'DHT22.temperature_C', 0);
+        sensorData.properties.humidity_air_inside    = _.get(data, 'DHT22.humidity', 0);
 
         sensorData.save((err, obj, numAffected) => {
           if(err) {

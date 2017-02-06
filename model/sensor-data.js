@@ -10,11 +10,20 @@ const mongoose = require('mongoose');
 
 const sensorDataSchema = mongoose.Schema({
   deviceId     : { type : String, required : true },
+  name         : { type : String },
   timestamp    : { type : Date, default : undefined, required : true },
-  temperatureC : { type : Number, default : 0 },
-  humidity     : { type : Number, default : 0 },
-  pressureinHg : { type : Number, default : 0 },
-  lux          : { type : Number, default : 0 },
+  created_at   : { type : Date, default : undefined, required : true },
+  modified_at  : { type : Date, default : undefined, required : true },
+  properties   : {
+    temperature_air_outside : { type : Number, default : undefined, required : true },
+    humidity_air_outside    : { type : Number, default : undefined, required : true },
+    pressure_air_outside    : { type : Number, default : undefined, required : true },
+    lux_outside             : { type : Number, default : undefined, required : true },
+    temperature_wall        : { type : Number, default : undefined, required : true },
+    temperature_wall_inside : { type : Number, default : undefined, required : true },
+    humidity_air_inside     : { type : Number, default : undefined, required : true },
+    temperature_air_inside  : { type : Number, default : undefined, required : true },
+  }
 },
 {
   collection : 'sensorData'

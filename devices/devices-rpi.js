@@ -8,6 +8,9 @@
 
 const LED_GPIO_OUTPUT = 23; // Pin 16 on the header (GPIO23)
 const DHT22_GPIO_PIN = 17;
+const DS18B20_1_SENSOR_ID = "10-00080283a977";
+const DS18B20_2_SENSOR_ID = "10-00080283a978";
+const DHT22_GPIO_PIN = 17;
 
 const DevicesBase = require('./devices-base.js');
 const deviceUtils = require('./device-utils.js');
@@ -15,6 +18,7 @@ const async       = require('async');
 const Gpio        = require('onoff').Gpio;
 const BME280      = require('bme280-sensor');
 const DHT22       = require('./DHT22.js');
+const DS18B20      = require('./ds18b20.js');
 const TSL2561     = require('./TSL2561.js');
 const SerialGPS   = require('./serial-gps.js');
 const os          = require('os');
@@ -28,6 +32,8 @@ class DevicesRPi extends DevicesBase {
     this.led     = new Gpio(LED_GPIO_OUTPUT, 'out');
     this.bme280  = new BME280();
     this.dht22   = new DHT22(DHT22_GPIO_PIN);
+    this.ds18b20_1 = new DS18B20(DS18B20_1_SENSOR_ID);
+    this.ds18b20_2 = new DS18B20(DS18B20_2_SENSOR_ID);
     this.tsl2561 = new TSL2561();
     this.gps     = new SerialGPS('/dev/ttyAMA0', 9600);
 
@@ -76,6 +82,15 @@ class DevicesRPi extends DevicesBase {
           let data = this.dht22.readSensorData();
           data.temperature_F = BME280.convertCelciusToFahrenheit(data.temperature_C);
           return callback(null, { DHT22 : data });
+        },
+
+        (callback) => {
+          let data = this.ds18b20_1.readSensorData();
+          return callback(null, { DS18B20_1 : data });
+        },
+        (callback) => {
+          let data = this.ds18b20_2.readSensorData();
+          return callback(null, { DS18B20_2 : data });
         },
 
         (callback) => this.tsl2561.readSensorData()

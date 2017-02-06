@@ -17,12 +17,12 @@ function initHistory() {
 
     data.forEach((element, idx) => {
       //if(idx % 5) return; // arbitrary thinning for some nice curve smoothing and faster rendering
-      temperature.push({ x : element.timestamp, y : element.temperatureC * 9 / 5 + 32 });
-      humidity.push({ x : element.timestamp, y : element.humidity });
-      pressure.push({ x : element.timestamp, y : element.pressureinHg });
+      temperature.push({ x : element.timestamp, y : element.properties.temperature_air_outside * 9 / 5 + 32 });
+      humidity.push({ x : element.timestamp, y : element.properties.humidity_air_outside });
+      pressure.push({ x : element.timestamp, y : element.properties.pressure_air_outside });
 
       if(element.lux >= 0 && element.lux <= 40000) { // TSL2561 gets blown out in direct sunlight to clean it up
-        lux.push({ x : element.timestamp, y : element.lux });
+        lux.push({ x : element.timestamp, y : element.properties.lux_outside });
       }
     });
 
