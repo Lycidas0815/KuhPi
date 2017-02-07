@@ -71,12 +71,12 @@ function drawGauges(sensorData) {
 
   var temperatureData = google.visualization.arrayToDataTable([
     ['Label', 'Value'],
-    ['Temp F ', Number(_.get(sensorData, 'DHT22.temperature_F', 0).toFixed(0))]
+    ['Temp F ', Number(_.get(sensorData, 'DHT22_1.temperature_F', 0).toFixed(0))]
   ]);
 
   var humidityData = google.visualization.arrayToDataTable([
     ['Label', 'Value'],
-    ['Humidity %', Number(_.get(sensorData, 'DHT22.humidity', 0).toFixed(0))]
+    ['Humidity %', Number(_.get(sensorData, 'DHT22_1.humidity', 0).toFixed(0))]
   ]);
 
   var pressureData = google.visualization.arrayToDataTable([

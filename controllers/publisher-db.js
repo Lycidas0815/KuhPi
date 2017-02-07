@@ -93,11 +93,13 @@ class DatabasePublisher {
         // TSL2561
         sensorData.properties.lux_outside             = _.get(data, 'TSL2561.lux', 0);
         // DS1820b's 
-        sensorData.properties.temperature_wall        = _.get(data, 'DS18b20_1.temperature_C', 0);
-        sensorData.properties.temperature_wall_inside = _.get(data, 'DS18b20_2.temperature_C', 0);
-        // DHT22
-        sensorData.properties.temperature_air_inside = _.get(data, 'DHT22.temperature_C', 0);
-        sensorData.properties.humidity_air_inside    = _.get(data, 'DHT22.humidity', 0);
+        sensorData.properties.temperature_wall_outside= _.get(data, 'DS18b20_1.temperature_C', 0);
+        sensorData.properties.temperature_wall        = _.get(data, 'DS18b20_2.temperature_C', 0);
+        // DHT22's
+        sensorData.properties.temperature_wall_inside = _.get(data, 'DHT22_1.temperature_C', 0);
+        sensorData.properties.humidity_wall_inside     = _.get(data, 'DHT22_1.humidity', 0);
+        sensorData.properties.temperature_air_inside  = _.get(data, 'DHT22_2.temperature_C', 0);
+        sensorData.properties.humidity_air_inside     = _.get(data, 'DHT22_2.humidity', 0);
 
         sensorData.save((err, obj, numAffected) => {
           if(err) {

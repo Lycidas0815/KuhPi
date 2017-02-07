@@ -15,14 +15,20 @@ const sensorDataSchema = mongoose.Schema({
   created_at   : { type : Date, default : undefined, required : true },
   modified_at  : { type : Date, default : undefined, required : true },
   properties   : {
-    temperature_air_outside : { type : Number, default : undefined, required : true },
-    humidity_air_outside    : { type : Number, default : undefined, required : true },
-    pressure_air_outside    : { type : Number, default : undefined, required : true },
-    lux_outside             : { type : Number, default : undefined, required : true },
-    temperature_wall        : { type : Number, default : undefined, required : true },
-    temperature_wall_inside : { type : Number, default : undefined, required : true },
-    humidity_air_inside     : { type : Number, default : undefined, required : true },
-    temperature_air_inside  : { type : Number, default : undefined, required : true },
+    // BME280
+    temperature_air_outside  : { type : Number, default : undefined, required : true },
+    humidity_air_outside     : { type : Number, default : undefined, required : true },
+    pressure_air_outside     : { type : Number, default : undefined, required : true },
+    // TSL2561
+    lux_outside              : { type : Number, default : undefined, required : true },
+    // DS18B20s
+    temperature_wall_outside : { type : Number, default : undefined, required : true },
+    temperature_wall         : { type : Number, default : undefined, required : true },
+    // DHT22s
+    temperature_wall_inside  : { type : Number, default : undefined, required : true },
+    humidity_wall_inside     : { type : Number, default : undefined, required : true },
+    temperature_air_inside   : { type : Number, default : undefined, required : true },
+    humidity_air_inside      : { type : Number, default : undefined, required : true },
   }
 },
 {

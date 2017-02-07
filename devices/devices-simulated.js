@@ -37,11 +37,6 @@ class DevicesSimulated extends DevicesBase {
       let fakeData = {
         simulated : true,
         timestamp : new Date(),
-        DHT22 : {
-          temperature_C : c1,
-          temperature_F : c1 * 9 / 5 + 32,
-          humidity : 39.7666
-        },
         BME280 : {
           temperature_C : c2,
           temperature_F : c2 * 9 / 5 + 32,
@@ -53,13 +48,23 @@ class DevicesSimulated extends DevicesBase {
         },
         TSL2561 : {
           lux : 3000 + 250 * Math.random(),
-          timestamp : '2016-10-09T23:41:15.107Z'
+          timestamp : new Date()
         },
         DS18b20_1 : {
           temperature_C : 42.3477,
         },
         DS18b20_2 : {
           temperature_C : 22.3477,
+        },
+        DHT22_1 : {
+          temperature_C : c1,
+          temperature_F : c1 * 9 / 5 + 32,
+          humidity : 39.7666
+        },
+        DHT22_2 : {
+          temperature_C : c1,
+          temperature_F : c1 * 9 / 5 + 32,
+          humidity : 39.7666
         },
         GPS : {
           lat : 37.444795 + Math.random() * 0.000001,
