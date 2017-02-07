@@ -21,7 +21,7 @@ function initHistory() {
       humidity.push({ x : element.timestamp, y : element.properties.humidity_air_outside });
       pressure.push({ x : element.timestamp, y : element.properties.pressure_air_outside });
 
-      if(element.lux >= 0 && element.lux <= 40000) { // TSL2561 gets blown out in direct sunlight to clean it up
+      if(element.properties.lux_outside >= 0 && element.properties.lux_outside <= 40000) { // TSL2561 gets blown out in direct sunlight to clean it up
         lux.push({ x : element.timestamp, y : element.properties.lux_outside });
       }
     });

@@ -67,8 +67,8 @@ class DevicesSimulated extends DevicesBase {
           humidity : 39.7666
         },
         GPS : {
-          lat : 37.444795 + Math.random() * 0.000001,
-          lon : -122.165146 + Math.random() * 0.000001,
+          lat : 49.845966 + Math.random() * 0.000001,
+          lon : 8.177154 + Math.random() * 0.000001,
           altitude : 9.144 + Math.random() * 0.03,
           altitudeUnits : 'M',
           satelliteCount : 8,
