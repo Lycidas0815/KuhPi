@@ -1,5 +1,5 @@
 /*
-  publisher.js
+  publisher-db.js
 
   DatabasePublisher persists sensor data for historical views.
 */
