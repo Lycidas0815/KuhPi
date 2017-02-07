@@ -40,8 +40,6 @@ router.get('/sensors/history/:startDate?/:endDate?', (req, res) => {
   var end_date = req.params.endDate;
   if (!end_date) {
     end_date = new Date();
-    console.log(end_date);
-    console.log(end_date.toISOString());
   } else {
     if(!moment(end_date, moment.ISO_8601).isValid()) {
       return res.status(400).send('Invalid ISO 8601 startDate');
