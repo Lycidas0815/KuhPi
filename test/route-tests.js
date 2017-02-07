@@ -30,15 +30,15 @@ describe('GET /sensors/live', () => {
         res.should.be.json;
         res.body.should.be.a('Object');
 
-        res.body.should.contain.all.keys(['DHT22', 'BME280', 'TSL2561', 'GPS']);
+        res.body.should.contain.all.keys(['DHT22_1', 'BME280', 'TSL2561', 'GPS']);
 
         res.body.should.contain.deep.property('BME280.temperature_C');
         res.body.should.contain.deep.property('BME280.humidity');
         res.body.should.contain.deep.property('BME280.pressure_hPa');
         res.body.should.contain.deep.property('BME280.pressure_inHg');
 
-        res.body.should.contain.deep.property('DHT22.temperature_C');
-        res.body.should.contain.deep.property('DHT22.humidity');
+        res.body.should.contain.deep.property('DHT22_1.temperature_C');
+        res.body.should.contain.deep.property('DHT22_1.humidity');
 
         res.body.should.contain.deep.property('TSL2561.lux');
         res.body.should.contain.deep.property('TSL2561.timestamp');
