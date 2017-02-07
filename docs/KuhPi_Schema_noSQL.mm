@@ -1,7 +1,6 @@
 <map version="1.0.1">
 <!-- To view this file, download free mind mapping software FreeMind from http://freemind.sourceforge.net -->
-<node CREATED="1283093380553" ID="ID_1723255651" MODIFIED="1435677116721" TEXT="DATDB">
-<hook NAME="AutomaticEdgeColor"/>
+<node CREATED="1283093380553" ID="ID_1723255651" MODIFIED="1486466871692" TEXT="KuhPiDB">
 <hook NAME="MapStyle">
 <properties SHOW_ICON_FOR_ATTRIBUTES="true" SHOW_NOTE_ICONS="true"/>
 <map_styles>
@@ -32,8 +31,9 @@
 </stylenode>
 </map_styles>
 </hook>
+<hook NAME="AutomaticEdgeColor"/>
 <attribute NAME="version" VALUE="&quot;1.1.0&quot;"/>
-<node CREATED="1422977367955" FOLDED="true" HGAP="30" ID="ID_1556166358" MODIFIED="1486408285870" POSITION="left" TEXT="admin" VSHIFT="30">
+<node CREATED="1422977367955" HGAP="30" ID="ID_1556166358" MODIFIED="1486475710495" POSITION="left" TEXT="admin" VSHIFT="30">
 <edge COLOR="#7c007c"/>
 <cloud COLOR="#f0f0f0"/>
 <node CREATED="1422977377081" ID="ID_934351669" MODIFIED="1422977402927" TEXT="version[]"/>
@@ -61,83 +61,11 @@
 </node>
 </node>
 </node>
-<node CREATED="1415639939193" FOLDED="true" HGAP="40" ID="ID_1820889152" MODIFIED="1486408284017" POSITION="right" TEXT="analysis_results">
-<edge COLOR="#00ffff"/>
-<cloud COLOR="#f0f0f0"/>
-<node CREATED="1422381304022" ID="ID_1377265528" MODIFIED="1444744870693" TEXT="_id">
-<richcontent TYPE="NOTE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      id_data_package.group.analysis.name.variant
-    </p>
-  </body>
-</html></richcontent>
-</node>
-<node CREATED="1415641069270" ID="ID_1564132695" MODIFIED="1444645439687" TEXT="group"/>
-<node CREATED="1444645425588" ID="ID_255831886" MODIFIED="1444645431334" TEXT="analysis"/>
-<node CREATED="1415639990706" ID="ID_763947868" MODIFIED="1444645436990" TEXT="name"/>
-<node CREATED="1444645444172" ID="ID_323979904" MODIFIED="1444645445520" TEXT="variant"/>
-<node CREATED="1421955034720" ID="ID_1378060109" MODIFIED="1422710104744" TEXT="description" VSHIFT="10"/>
-<node CREATED="1422645218362" ID="ID_69732411" MODIFIED="1422645221093" TEXT="analysis">
-<node CREATED="1422710072623" ID="ID_1064838577" MODIFIED="1422710076245" TEXT="name"/>
-<node CREATED="1422710077429" ID="ID_103781259" MODIFIED="1422710079104" TEXT="version"/>
-<node CREATED="1422710079924" ID="ID_251133501" MODIFIED="1422710083416" TEXT="parameter_set"/>
-</node>
-<node CREATED="1415640303536" ID="ID_213964822" MODIFIED="1421503475518" TEXT="id_worker">
-<icon BUILTIN="password"/>
-</node>
-<node CREATED="1416598349670" ID="ID_1414553073" MODIFIED="1421503480422" TEXT="id_data_package" VSHIFT="10">
-<icon BUILTIN="password"/>
-</node>
-<node CREATED="1422289014530" ID="ID_1675903050" MODIFIED="1422289067280" TEXT="created_at" VSHIFT="10">
-<icon BUILTIN="calendar"/>
-</node>
-<node CREATED="1415640318985" ID="ID_975643642" MODIFIED="1422289065631" TEXT="modified_at" VSHIFT="10">
-<icon BUILTIN="calendar"/>
-</node>
-<node CREATED="1415640005714" ID="ID_383085188" MODIFIED="1415640129502" TEXT="results[]" VSHIFT="10">
-<node CREATED="1415640118145" ID="ID_479490775" MODIFIED="1415702203154" TEXT="key"/>
-<node CREATED="1419080018228" ID="ID_1048179841" MODIFIED="1419080020736" TEXT="properties">
-<node CREATED="1415640120017" ID="ID_782219661" MODIFIED="1415640126173" TEXT="value"/>
-<node CREATED="1415702776888" ID="ID_348914861" MODIFIED="1415702779403" TEXT="unit"/>
-<node CREATED="1421954995476" ID="ID_1320856211" MODIFIED="1421955023145" TEXT="description"/>
-</node>
-</node>
-</node>
-<node CREATED="1415639866554" ID="ID_603295218" MODIFIED="1422381347082" POSITION="left" TEXT="data_packages" VSHIFT="-50">
-<richcontent TYPE="NOTE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      tempor&#xe4;re DataPackages werden in Collection data_packages.tmp abgelegt.
-    </p>
-    <p>
-      Dies wird z.B. als Zwischenergebnis beim Datenmerge verwendet.
-    </p>
-  </body>
-</html></richcontent>
+<node CREATED="1415639866554" ID="ID_603295218" MODIFIED="1486466888975" POSITION="left" TEXT="data_packages" VSHIFT="-50">
 <edge COLOR="#00ff00"/>
 <cloud COLOR="#f0f0f0"/>
-<node CREATED="1422381338418" ID="ID_1460425486" MODIFIED="1486408456781" TEXT="_id">
-<richcontent TYPE="NOTE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      timestamp
-    </p>
-  </body>
-</html>
-</richcontent>
-<icon BUILTIN="help"/>
-</node>
-<node CREATED="1415697214688" ID="ID_1311176257" MODIFIED="1422381347080" TEXT="name" VSHIFT="10"/>
+<node CREATED="1422381338418" ID="ID_1460425486" MODIFIED="1486466824769" TEXT="_id"/>
+<node CREATED="1415697214688" ID="ID_1311176257" MODIFIED="1486466925760" STYLE="fork" TEXT="name" VSHIFT="10"/>
 <node CREATED="1416598295797" ID="ID_922524070" MODIFIED="1421084268516" TEXT="timestamp">
 <icon BUILTIN="calendar"/>
 </node>
@@ -148,126 +76,47 @@
 <icon BUILTIN="calendar"/>
 </node>
 <node CREATED="1416842286110" ID="ID_1405829185" MODIFIED="1486408118123" TEXT="properties">
-<node CREATED="1486407168155" ID="ID_1788686531" MODIFIED="1486408272569" TEXT="temperature_air_outside">
-<richcontent TYPE="NOTE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      BME280
-    </p>
-  </body>
-</html>
-</richcontent>
-<cloud COLOR="#3333ff"/>
+<node CREATED="1486466485991" ID="ID_338191700" MODIFIED="1486466558724" TEXT="BME280">
+<cloud COLOR="#0033ff"/>
+<node CREATED="1486407168155" ID="ID_1788686531" MODIFIED="1486466537819" TEXT="temperature_air_outside">
 <font NAME="SansSerif" SIZE="12"/>
 </node>
-<node CREATED="1486407817592" ID="ID_411745326" MODIFIED="1486408274726" TEXT="pressure_air_outside">
-<richcontent TYPE="NOTE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      BME280
-    </p>
-  </body>
-</html>
-</richcontent>
-<cloud COLOR="#3333ff"/>
+<node CREATED="1486407826936" ID="ID_1055596152" MODIFIED="1486466540095" TEXT="humidity_air_outside">
 <font NAME="SansSerif" SIZE="12"/>
 </node>
-<node CREATED="1486407826936" ID="ID_1055596152" MODIFIED="1486408275907" TEXT="humidity_air_outside">
-<richcontent TYPE="NOTE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      BME280
-    </p>
-  </body>
-</html>
-</richcontent>
-<cloud COLOR="#3333ff"/>
+<node CREATED="1486407817592" ID="ID_411745326" MODIFIED="1486466543755" TEXT="pressure_air_outside">
 <font NAME="SansSerif" SIZE="12"/>
 </node>
-<node CREATED="1486408120025" ID="ID_1351635124" MODIFIED="1486408238253" TEXT="lux_outside">
-<richcontent TYPE="NOTE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      TSL2561
-    </p>
-  </body>
-</html>
-</richcontent>
-<cloud COLOR="#00cc00"/>
 </node>
-<node CREATED="1486407168155" ID="ID_5994473" MODIFIED="1486408253698" TEXT="temperature_wall">
-<richcontent TYPE="NOTE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      DS1820b Edelstahl
-    </p>
-  </body>
-</html>
-</richcontent>
-<cloud COLOR="#999999"/>
-</node>
-<node CREATED="1486407283327" ID="ID_1599552867" MODIFIED="1486408256209" TEXT="temperature_wall_inside">
-<richcontent TYPE="NOTE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      DS1820b
-    </p>
-  </body>
-</html>
-</richcontent>
-<cloud COLOR="#999999"/>
-</node>
-<node CREATED="1486407315535" ID="ID_1315834716" MODIFIED="1486408263374" TEXT="humidity_air_inside">
-<richcontent TYPE="NOTE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      DHT22
-    </p>
-  </body>
-</html>
-</richcontent>
+<node CREATED="1486466569984" ID="ID_1844821857" MODIFIED="1486466586137" TEXT="TSL2561">
 <cloud COLOR="#ffff00"/>
+<node CREATED="1486408120025" ID="ID_1351635124" MODIFIED="1486466577349" TEXT="lux_outside"/>
 </node>
-<node CREATED="1486407291464" ID="ID_786849596" MODIFIED="1486408264528" TEXT="temperature_air_inside">
-<richcontent TYPE="NOTE"><html>
-  <head>
-    
-  </head>
-  <body>
-    <p>
-      DHT22
-    </p>
-  </body>
-</html>
-</richcontent>
-<cloud COLOR="#ffff00"/>
+<node CREATED="1486466598639" ID="ID_764633750" MODIFIED="1486466632339" TEXT="DS18B20">
+<cloud COLOR="#999999"/>
+<node CREATED="1486464756380" ID="ID_1116050953" MODIFIED="1486464770834" TEXT="temperature_wall_outside"/>
+</node>
+<node CREATED="1486466633328" ID="ID_1827570185" MODIFIED="1486466666043" STYLE="fork" TEXT="DS18B20">
+<edge COLOR="#00ff00" STYLE="bezier" WIDTH="thin"/>
+<cloud COLOR="#999999"/>
+<node CREATED="1486407168155" ID="ID_5994473" MODIFIED="1486466719244" TEXT="temperature_wall"/>
+</node>
+<node CREATED="1486466691744" ID="ID_260412477" MODIFIED="1486466770280" TEXT="DHT22">
+<cloud COLOR="#00cc33"/>
+<node CREATED="1486407283327" ID="ID_1599552867" MODIFIED="1486466737612" STYLE="fork" TEXT="temperature_wall_inside">
+<edge COLOR="#00ff00" STYLE="bezier" WIDTH="thin"/>
+</node>
+<node CREATED="1486464725398" ID="ID_1262053581" MODIFIED="1486464738786" TEXT="humidity_wall_inside"/>
+</node>
+<node CREATED="1486466774527" ID="ID_863460526" MODIFIED="1486466835495" TEXT="DHT22">
+<cloud COLOR="#00cc33"/>
+<node CREATED="1486407291464" ID="ID_786849596" MODIFIED="1486466789675" TEXT="temperature_air_inside"/>
+<node CREATED="1486407315535" ID="ID_1315834716" MODIFIED="1486466795693" TEXT="humidity_air_inside"/>
+</node>
+<node CREATED="1486466847495" ID="ID_381889632" MODIFIED="1486466850020" TEXT="???">
+<node CREATED="1486464927902" ID="ID_500060512" MODIFIED="1486464962953" TEXT="temperatur_oven"/>
 </node>
 </node>
-</node>
-<node CREATED="1415697275423" HGAP="40" ID="ID_1855564290" MODIFIED="1420741820115" POSITION="right" TEXT="file_repository" VSHIFT="-30">
-<edge COLOR="#ff00ff"/>
-<cloud COLOR="#f0f0f0"/>
 </node>
 </node>
 </map>
