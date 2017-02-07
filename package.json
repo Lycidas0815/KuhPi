@@ -1,7 +1,7 @@
 {
-  "name": "pi-weather-station",
+  "name": "kuhpi-weather-station",
   "version": "1.0.0",
-  "description": "Raspberry Pi Weather Station",
+  "description": "Raspberry Pi Weather Station (in a cow chapel)",
   "main": "server.js",
   "scripts": {
     "install": "node install-dependencies.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/skylarstein/pi-weather-station.git"
+    "url": "git+https://github.com/Lycidas0815/KuhPi.git"
   },
-  "author": "Maxwell Mears, Skylar Stein",
+  "author": "Maxwell Mears, Skylar Stein, Nico Ecker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/skylarstein/pi-weather-station/issues"
+    "url": "https://github.com/Lycidas0815/KuhPi/issues"
   },
-  "homepage": "https://github.com/skylarstein/pi-weather-station#readme",
+  "homepage": "https://github.com/Lycidas0815/KuhPi#readme",
   "dependencies": {
     "async": "^2.1.2",
     "colors": "^1.1.2",
