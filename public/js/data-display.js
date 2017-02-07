@@ -11,7 +11,7 @@ var mapReady = false;
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map-canvas'), {
-    center : { lat : 37.444795, lng : -122.165146 },
+    center : { lat : 49.845966, lng : 8.177154 },
     zoom : 4
   });
 
@@ -71,7 +71,7 @@ function drawGauges(sensorData) {
 
   var temperatureData = google.visualization.arrayToDataTable([
     ['Label', 'Value'],
-    ['Temp F ', Number(_.get(sensorData, 'DHT22_1.temperature_F', 0).toFixed(0))]
+    ['Temp C ', Number(_.get(sensorData, 'DHT22_1.temperature_C', 0).toFixed(0))]
   ]);
 
   var humidityData = google.visualization.arrayToDataTable([
@@ -90,14 +90,14 @@ function drawGauges(sensorData) {
   ]);
 
   var temperatureOptions = {
-    min        : 0,
-    max        : 120,
-    yellowFrom : 70,
-    yellowTo   : 90,
-    redFrom    : 90,
-    redTo      : 200,
-    minorTicks : 4,
-    majorTicks : ['0', '20', '40', '60', '80', '100', '120']
+    min        : -20,
+    max        : 60,
+    yellowFrom : 30,
+    yellowTo   : 40,
+    redFrom    : 40,
+    redTo      : 60,
+    minorTicks : 5,
+    majorTicks : ['-20', '0', '20', '40']
   };
 
   var humidityOptions = {
