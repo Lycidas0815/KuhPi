@@ -2,4 +2,5 @@
 
 Based on the ingenious Raspberry Pi Weatherstation project of skylarstein https://github.com/skylarstein/pi-weather-station/
 
+Adding more data persistency mechanisms with a custom packaging size like a CSV exporter.
 Adding more sensors and an advanced data layout which can be used to serve as input for the Data Analysis Toolkit.
