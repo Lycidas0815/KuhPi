@@ -22,7 +22,7 @@
     "async": "^2.1.2",
     "colors": "^1.1.2",
     "cors": "^2.8.1",
-    "dotenv": "^2.0.0",
+    "dotenv": "^4.0.0",
     "express": "^4.14.0",
     "file-exists": "^3.0.1",
     "lodash": "^4.16.4",
@@ -31,7 +31,7 @@
     "nmea": "^0.1.0",
     "request": "^2.75.0",
     "solar-calc": "^1.0.3",
-    "ws": "^1.1.1"
+    "ws": "^2.0.3"
   },
   "linuxDependencies": {
     "bme280-sensor": "0.0.9",
