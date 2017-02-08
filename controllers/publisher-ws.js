@@ -62,10 +62,10 @@ class WebSocketPublisher {
   }
 
   _sendSensorData() {
-    if(this.wss.clients.length) {
+    if(this.wss.clients.size) {
       this.deviceManager.readSensors()
         .then((data) => {
-          console.log(`Sending sensor data to ${this.wss.clients.length} websocket clients`);
+          console.log(`Sending sensor data to ${this.wss.clients.size} websocket clients`);
           this.wss.clients.forEach((client) => {
             client.send(JSON.stringify({ id : 1, data : data }));
           });
@@ -78,10 +78,10 @@ class WebSocketPublisher {
   }
 
   _sendLocationData() {
-    if(this.wss.clients.length) {
+    if(this.wss.clients.size) {
       this.deviceManager.locationDetails()
         .then((data) => {
-          console.log(`Sending location data to ${this.wss.clients.length} websocket clients`);
+          console.log(`Sending location data to ${this.wss.clients.size} websocket clients`);
           this.wss.clients.forEach((client) => {
             client.send(JSON.stringify({ id : 2, data : data }));
           });
