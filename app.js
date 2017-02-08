@@ -10,6 +10,7 @@ const express           = require('express');
 const cors              = require('cors');
 const routes            = require('./routes/index.js');
 const DatabasePublisher = require('./controllers/publisher-db.js');
+const CsvPublisher      = require('./controllers/publisher-csv.js');
 const mongoose          = require('mongoose');
 
 class WeatherStationApp {
@@ -20,6 +21,7 @@ class WeatherStationApp {
     this._initMiddleware();
     this._initRoutes();
     this._connectDatabase();
+    this._initFilePublisher();
   }
 
   // For the sake of clean code I'm not going out of my way to make these private
@@ -49,6 +51,10 @@ class WeatherStationApp {
     });
 
     DatabasePublisher.instance().startPublishing();
+  }
+
+  _initFilePublisher() {
+    CsvPublisher.instance().startPublishing();
   }
 }
 
