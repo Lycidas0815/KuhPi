@@ -9,6 +9,7 @@
 const _          = require('lodash');
 const mongoose   = require('mongoose');
 const SensorData = require('../model/sensor-data.js');
+const colors      = require('colors/safe');
 
 class DatabasePublisher {
 
@@ -73,7 +74,8 @@ class DatabasePublisher {
   _publish() {
 
     if(mongoose.connection.readyState != 1 /*connected*/) {
-      console.log(`I'd really love to publish some sensor data but the DB is not in a connected state! I'll try next time.`);
+      console.log(colors.black.bgYellow(
+        `I'd really love to publish some sensor data but the DB is not in a connected state! I'll try next time.`));
       this._restartPublishTimer();
       return;
     }
