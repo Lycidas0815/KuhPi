@@ -9,6 +9,7 @@
 const _          = require('lodash');
 const mongoose   = require('mongoose');
 const SensorData = require('../model/sensor-data.js');
+const colors      = require('colors/safe');
 
 class DatabasePublisher {
 
@@ -73,7 +74,8 @@ class DatabasePublisher {
   _publish() {
 
     if(mongoose.connection.readyState != 1 /*connected*/) {
-      console.log(`I'd really love to publish some sensor data but the DB is not in a connected state! I'll try next time.`);
+      console.log(colors.black.bgYellow(
+        `I'd really love to publish some sensor data but the DB is not in a connected state! I'll try next time.`));
       this._restartPublishTimer();
       return;
     }
@@ -93,8 +95,8 @@ class DatabasePublisher {
         // TSL2561
         sensorData.properties.lux_outside             = _.get(data, 'TSL2561.lux', 0);
         // DS1820b's 
-        sensorData.properties.temperature_wall_outside= _.get(data, 'DS18b20_1.temperature_C', 0);
-        sensorData.properties.temperature_wall        = _.get(data, 'DS18b20_2.temperature_C', 0);
+        sensorData.properties.temperature_wall_outside= _.get(data, 'DS18B20_1.temperature_C', 0);
+        sensorData.properties.temperature_wall        = _.get(data, 'DS18B20_2.temperature_C', 0);
         // DHT22's
         sensorData.properties.temperature_wall_inside = _.get(data, 'DHT22_1.temperature_C', 0);
         sensorData.properties.humidity_wall_inside    = _.get(data, 'DHT22_1.humidity', 0);

@@ -20,14 +20,7 @@ class ds18b20 {
   }
 
   pollingWorker(ms) {
-    this.ds18b20.temperature(this.sensorId, function(err, result){
-      if (err) {
-        // TODO: retry?
-      } else {
-        this.temperature_C = result;
-      }
-    });
-  
+    this.temperature_C = this.ds18b20.temperatureSync(this.sensorId);
     setTimeout(() => this.pollingWorker(ms), ms); 
   }
 }

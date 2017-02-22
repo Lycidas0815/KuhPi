@@ -107,6 +107,8 @@ class DevicesRPi extends DevicesBase {
           .then((data) => callback(null, { TSL2561 : data }))
           .catch((err) => callback(null, { TSL2561 : { err : err }})),
 
+        (callback) => callback(null, { timestamp : new Date() }),
+
         (callback) => callback(null, { GPS : this.gps.getData() }),
 
         (callback) => callback(null, { timestamp : new Date() }),
