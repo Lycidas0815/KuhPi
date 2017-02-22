@@ -9,8 +9,8 @@
 const LED_GPIO_OUTPUT = 23; // Pin 16 on the header (GPIO23)
 const DHT22_1_GPIO_PIN = 17;
 const DHT22_2_GPIO_PIN = 19;
-const DS18B20_1_SENSOR_ID = "10-00080283a977";
-const DS18B20_2_SENSOR_ID = "10-00080283a978";
+const DS18B20_1_SENSOR_ID = "28-000008096913";
+const DS18B20_2_SENSOR_ID = "28-000008097da6";
 
 
 const DevicesBase = require('./devices-base.js');
@@ -23,6 +23,7 @@ const DS18B20      = require('./ds18b20.js');
 const TSL2561     = require('./TSL2561.js');
 const SerialGPS   = require('./serial-gps.js');
 const os          = require('os');
+
 
 class DevicesRPi extends DevicesBase {
 
@@ -94,6 +95,7 @@ class DevicesRPi extends DevicesBase {
 
         (callback) => {
           let data = this.ds18b20_1.readSensorData();
+          //console.log(`data for sensor ds18b20_1: ${JSON.stringify(data, null, 2)}`);
           return callback(null, { DS18B20_1 : data });
         },
         (callback) => {
@@ -106,6 +108,8 @@ class DevicesRPi extends DevicesBase {
           .catch((err) => callback(null, { TSL2561 : { err : err }})),
 
         (callback) => callback(null, { GPS : this.gps.getData() }),
+
+        (callback) => callback(null, { timestamp : new Date() }),
 
         (callback) => callback(null, { app : { platformUptime : os.uptime(),
                                                processUptime  : process.uptime(),
