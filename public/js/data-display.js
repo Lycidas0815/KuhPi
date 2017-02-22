@@ -69,24 +69,54 @@ function drawGauges(sensorData) {
   if(!_.has(google, 'visualization.arrayToDataTable') || !_.has(google, 'visualization.Gauge'))
     return;
 
-  var temperatureData = google.visualization.arrayToDataTable([
+  var temperatureOutsideData = google.visualization.arrayToDataTable([
     ['Label', 'Value'],
-    ['Temp C ', Number(_.get(sensorData, 'DHT22_1.temperature_C', 0).toFixed(0))]
+    ['°C (out) ', Number(_.get(sensorData, 'BME280.temperature_C', 0).toFixed(2))]
   ]);
 
-  var humidityData = google.visualization.arrayToDataTable([
+  var humidityOutsideData = google.visualization.arrayToDataTable([
     ['Label', 'Value'],
-    ['Humidity %', Number(_.get(sensorData, 'DHT22_1.humidity', 0).toFixed(0))]
+    ['% (out)', Number(_.get(sensorData, 'BME280.humidity', 0))]
   ]);
 
-  var pressureData = google.visualization.arrayToDataTable([
+  var pressureOutsideData = google.visualization.arrayToDataTable([
     ['Label', 'Value'],
-    ['inHg', Number(_.get(sensorData, 'BME280.pressure_inHg', 0).toFixed(2))]
+    ['hPa (out)', Number(_.get(sensorData, 'BME280.pressure_hPa', 0).toFixed(2))]
   ]);
 
-  var luxData = google.visualization.arrayToDataTable([
+  var luxOutsideData = google.visualization.arrayToDataTable([
     ['Label', 'Value'],
-    ['Lux', Number(_.get(sensorData, 'TSL2561.lux', 0).toFixed(0))]
+    ['lux (out)', Number(_.get(sensorData, 'TSL2561.lux', 0).toFixed(0))]
+  ]);
+
+  var temperatureWallOutsideData = google.visualization.arrayToDataTable([
+    ['Label', 'Value'],
+    ['°C (w_out) ', Number(_.get(sensorData, 'DS18B20_1.temperature_C', 0).toFixed(2))]
+  ]);
+
+  var temperatureWallData = google.visualization.arrayToDataTable([
+    ['Label', 'Value'],
+    ['°C (wall) ', Number(_.get(sensorData, 'DS18B20_2.temperature_C', 0).toFixed(2))]
+  ]);
+
+  var temperatureWallInsideData = google.visualization.arrayToDataTable([
+    ['Label', 'Value'],
+    ['°C (w_in) ', Number(_.get(sensorData, 'DHT22_1.temperature_C', 0).toFixed(2))]
+  ]);
+
+  var humidityWallInsideData = google.visualization.arrayToDataTable([
+    ['Label', 'Value'],
+    ['% (w_in)', Number(_.get(sensorData, 'DHT22_1.humidity', 0).toFixed(2))]
+  ]);
+
+  var temperatureInsideData = google.visualization.arrayToDataTable([
+    ['Label', 'Value'],
+    ['°C (in) ', Number(_.get(sensorData, 'DHT22_2.temperature_C', 0).toFixed(2))]
+  ]);
+
+  var humidityInsideData = google.visualization.arrayToDataTable([
+    ['Label', 'Value'],
+    ['% (in)', Number(_.get(sensorData, 'DHT22_2.humidity', 0).toFixed(2))]
   ]);
 
   var temperatureOptions = {
@@ -97,7 +127,7 @@ function drawGauges(sensorData) {
     redFrom    : 40,
     redTo      : 60,
     minorTicks : 5,
-    majorTicks : ['-20', '0', '20', '40']
+    majorTicks : ['-20', '0', '20', '40', '60']
   };
 
   var humidityOptions = {
@@ -108,8 +138,8 @@ function drawGauges(sensorData) {
   };
 
   var pressureOptions = {
-    min        : 27.8,
-    max        : 31.2,
+    min        : 900,
+    max        : 1100,
     minorTicks : 4,
     majorTicks : ['Stormy', 'Rain', 'Change', 'Fair', 'Dry']
   };
@@ -121,24 +151,197 @@ function drawGauges(sensorData) {
     majorTicks : ['0','10000', '20000', '30000', '40000']
   };
 
-  if(!$.temperatureGauge) {
-    $.temperatureGauge = new google.visualization.Gauge(document.getElementById('temperature-gauge'));
+  if(!$.temperatureOutsideGauge) {
+    $.temperatureOutsideGauge = new google.visualization.Gauge(document.getElementById('temperature-outside-gauge'));
   }
 
-  if(!$.humidityGauge) {
-    $.humidityGauge = new google.visualization.Gauge(document.getElementById('humidity-gauge'));
+  if(!$.humidityOutsideGauge) {
+    $.humidityOutsideGauge = new google.visualization.Gauge(document.getElementById('humidity-outside-gauge'));
   }
 
-  if(!$.pressureGauge) {
-    $.pressureGauge = new google.visualization.Gauge(document.getElementById('pressure-gauge'));
+  if(!$.pressureOutsideGauge) {
+    $.pressureOutsideGauge = new google.visualization.Gauge(document.getElementById('pressure-outside-gauge'));
   }
 
-  if(!$.luxGauge) {
-    $.luxGauge = new google.visualization.Gauge(document.getElementById('lux-gauge'));
+  if(!$.luxOutsideGauge) {
+    $.luxOutsideGauge = new google.visualization.Gauge(document.getElementById('lux-outside-gauge'));
   }
 
-  $.temperatureGauge.draw(temperatureData, temperatureOptions);
-  $.humidityGauge.draw(humidityData, humidityOptions);
-  $.pressureGauge.draw(pressureData, pressureOptions);
-  $.luxGauge.draw(luxData, luxOptions);
+  if(!$.temperatureWallOutsideGauge) {
+    $.temperatureWallOutsideGauge = new google.visualization.Gauge(document.getElementById('temperature-walloutside-gauge'));
+  }
+
+  if(!$.temperatureWallGauge) {
+    $.temperatureWallGauge = new google.visualization.Gauge(document.getElementById('temperature-wall-gauge'));
+  }
+
+  if(!$.temperatureWallInsideGauge) {
+    $.temperatureWallInsideGauge = new google.visualization.Gauge(document.getElementById('temperature-wallinside-gauge'));
+  }
+
+  if(!$.humidityWallInsideGauge) {
+    $.humidityWallInsideGauge = new google.visualization.Gauge(document.getElementById('humidity-wallinside-gauge'));
+  }
+
+  if(!$.temperatureInsideGauge) {
+    $.temperatureInsideGauge = new google.visualization.Gauge(document.getElementById('temperature-inside-gauge'));
+  }
+
+  if(!$.humidityInsideGauge) {
+    $.humidityInsideGauge = new google.visualization.Gauge(document.getElementById('humidity-inside-gauge'));
+  }
+
+  $.temperatureOutsideGauge.draw(temperatureOutsideData, temperatureOptions);
+  $.humidityOutsideGauge.draw(humidityOutsideData, humidityOptions);
+  $.pressureOutsideGauge.draw(pressureOutsideData, pressureOptions);
+  $.luxOutsideGauge.draw(luxOutsideData, luxOptions);
+  $.temperatureWallOutsideGauge.draw(temperatureWallOutsideData, temperatureOptions);
+  $.temperatureWallGauge.draw(temperatureWallData, temperatureOptions);
+  $.temperatureWallInsideGauge.draw(temperatureWallInsideData, temperatureOptions);
+  $.humidityWallInsideGauge.draw(humidityWallInsideData, humidityOptions);
+  $.temperatureInsideGauge.draw(temperatureInsideData, temperatureOptions);
+  $.humidityInsideGauge.draw(humidityInsideData, humidityOptions);
+}
+
+var currentChart = null;
+
+function initCurrentCharts() {
+  // this.currentChart = new Highcharts.Chart('currentChart', {
+  //    chart: {
+  //       zoomType: 'x',
+  //       defaultSeriesType: 'spline'
+  //     },
+  //     title: {
+  //       text: 'current data'
+  //     },
+  //     xAxis: {
+  //       type: 'datetime',
+  //       tickPixelInterval: 150,
+  //       maxZoom: 20 * 100
+  //     },
+  //     yAxis: {
+  //       title: {
+  //         text: 'temperature °C'
+  //       }
+  //     },
+  //     series: [{
+  //       type: 'spline',
+  //       name: 'temperature',
+  //       data: currentTemperature
+  //     }]
+  // });
+  this.currentChart = new Highcharts.Chart('currentChart', {
+      chart: { 
+        zoomType: 'xy'
+      },
+      title: {
+        text: 'BME outside'
+      },
+      xAxis: {
+        type: 'datetime'
+      },
+      yAxis: [{
+        labels: {
+          format: '{value}°C',
+          style: {
+            color: Highcharts.getOptions().colors[2]
+          }
+        },
+        title: {
+          text: 'Temperature',
+          style: {
+            color: Highcharts.getOptions().colors[2]
+          }
+        },
+        opposite: true
+      }, {
+        gridLineWidth: 0,
+        title: {
+          text: 'Humidity',
+          style: {
+            color: Highcharts.getOptions().colors[0]
+          }
+        },
+        labels: {
+          format: '{value} %',
+          style: {
+            color: Highcharts.getOptions().colors[0]
+          }
+        }
+      }, {
+        gridLineWidth: 0,
+        title: {
+          text: 'Pressure',
+          style: {
+            color: Highcharts.getOptions().colors[1]
+          }
+        },
+        labels: {
+          format: '{value} hPa',
+          style: {
+            color: Highcharts.getOptions().colors[1]
+          }
+        },
+        opposite: true
+      }],
+      tooltip: {
+        shared: true
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'left',
+        x: 80,
+        verticalAlign: 'top',
+        y: 55,
+        floating: true,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+      },
+      series: [{
+        id: 'series-humidity-outside',
+        name: 'Humidity',
+        type: 'column',
+        yAxis: 1,
+        data: [],
+        tooltip: {
+          valueSuffix: ' %'
+        }
+      }, {
+        id: 'series-pressure-outside',
+        name: 'Pressure',
+        type: 'spline',
+        yAxis: 2,
+        data: [],
+        marker: {
+          enabled: false
+        },
+        dashStyle: 'shortDot',
+         tooltip: {
+          valueSuffix: ' hPa'
+        }
+      }, {
+        id: 'series-temperature-outside',
+        name: 'Temperature',
+        type: 'spline',
+        yAxis: 0,
+        data: [],
+         tooltip: {
+          valueSuffix: ' °C'
+        }
+      }]
+    });
+}
+
+function drawCurrentCharts(sensorData) {
+  // temperature
+  var temperatureSeries = this.currentChart.get('series-temperature-outside');
+  var shift = temperatureSeries.data.length > 20;
+  temperatureSeries.addPoint([new Date(_.get(sensorData, 'timestamp', 0)).getTime(), _.get(sensorData, 'BME280.temperature_C', -1)], true, shift); 
+  // humidity
+  var humiditySeries = this.currentChart.get('series-humidity-outside');
+  var shift = humiditySeries.data.length > 20;
+  humiditySeries.addPoint([new Date(_.get(sensorData, 'timestamp', 0)).getTime(), _.get(sensorData, 'BME280.humidity', -1)], true, shift); 
+  // pressure
+  var pressureSeries = this.currentChart.get('series-pressure-outside');
+  var shift = pressureSeries.data.length > 20;
+  pressureSeries.addPoint([new Date(_.get(sensorData, 'timestamp', 0)).getTime(), _.get(sensorData, 'BME280.pressure_hPa', -1)], true, shift); 
 }

@@ -14,6 +14,7 @@ $(document).ready(function() {
 
   initGauges();
   initHistory();
+  initCurrentCharts();
 
   // Initiate websocket connection for sensor and location updates
   //
@@ -29,6 +30,7 @@ $(document).ready(function() {
           //console.log('Received new sensor data:', eventData.data);
           $.sensorData = eventData.data;
           drawGauges(eventData.data);
+          drawCurrentCharts(eventData.data);
           updateMap();
           $('#node-version').text(eventData.data.app.engine);
           $('#raw-data-json').text(JSON.stringify(eventData.data, null, 2));

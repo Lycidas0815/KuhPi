@@ -32,8 +32,8 @@
 
 #gauge-col {
   vertical-align:top;
-  width: 200px;
-  height: 600px;
+  width: 150px;
+  height: 800px;
   padding: 0;
   display: table-cell;
 }
@@ -49,6 +49,6 @@
 }
 
 #gauge {
-  width: 350px;
-  height: 350px;
+  width: 200px;
+  height: 200px;
 }

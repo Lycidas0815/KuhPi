@@ -10,8 +10,10 @@
     <script src="https://www.google.com/jsapi"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
 
     <!-- App Assets -->
+    <!--<script src="/js/static/bundle.js"></script>-->
     <script src="/js/data-display.js"></script>
     <script src="/js/index.js"></script>
     <script src="/js/history-display.js"></script>
@@ -42,17 +44,23 @@
       <div id="data-container">
         <div id="table-row">
           <div id="gauge-col">
-            <div id="temperature-gauge" class="gauge"></div>
-            <div id="humidity-gauge" class="gauge"></div>
-            <div id="pressure-gauge" class="gauge"></div>
-            <div id="lux-gauge" class="gauge"></div>
+            <h2>Outside</h2>
+            <div id="temperature-outside-gauge" class="gauge"></div>
+            <div id="humidity-outside-gauge" class="gauge"></div>
+            <div id="pressure-outside-gauge" class="gauge"></div>
+            <div id="lux-outside-gauge" class="gauge"></div>
           </div>
-          <div id="map-canvas"></div>
-          <div class="chart">
-            <canvas id="temperatureChart" height="100px"></canvas>
-            <canvas id="humidityChart" height="100px"></canvas>
-            <canvas id="pressureChart" height="100px"></canvas>
-            <canvas id="luxChart" height="100px"></canvas>
+          <div id="gauge-col">
+            <h2>Wall</h2>
+            <div id="temperature-walloutside-gauge" class="gauge"></div>
+            <div id="temperature-wall-gauge" class="gauge"></div>
+            <div id="temperature-wallinside-gauge" class="gauge"></div>
+          </div>
+          <div id="gauge-col">
+            <h2>Inside</h2>
+            <div id="humidity-wallinside-gauge" class="gauge"></div>
+            <div id="temperature-inside-gauge" class="gauge"></div>
+            <div id="humidity-inside-gauge" class="gauge"></div>
           </div>
           <div id="raw-data">
             <pre id="raw-data-json"></pre>
@@ -60,6 +68,17 @@
           <div id="raw-data">
             <pre id="raw-location-json"></pre>
           </div>
+          <!--<div id="map-canvas"></div>-->
+          <div class="charts">
+            <div id="currentChart"></div>
+            <div id="temperatureOutsideChart"></div>
+            <div id="outsideChart"></div>
+            <!--<canvas id="temperatureChart" height="100px"></canvas>
+            <canvas id="humidityChart" height="100px"></canvas>
+            <canvas id="pressureChart" height="100px"></canvas>
+            <canvas id="luxChart" height="100px"></canvas>-->
+          </div>
+          
         </div>
       </div>
       <br>

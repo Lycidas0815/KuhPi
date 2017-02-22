@@ -32,16 +32,21 @@ class DevicesSimulated extends DevicesBase {
     // Including a little bit of movement in the fake data to illustrate live updates on the front end
     //
     return new Promise((resolve, reject) => {
-      let c1 = 15 + (new Date()).getSeconds() / 60 * 15;
-      let c2 = 15 + (new Date()).getSeconds() / 60 * 15;
+      let seconds = new Date().getSeconds();
+      let c1 = 15 + seconds / 60 * 15;
+      let c2 = 20 + seconds / 60 * 20;
+      let c3 = 25 + seconds / 60 * 25;
+      let c4 = 1 + seconds / 60 * 10;
+      let direction = this.randomDoubleFromInterval(0,1) > 0.5 ? true : false;
+      //console.log(`Simulated: seconds = ${seconds},\n   c1 = ${c1},\n   c2 = ${c2},\n   c3 = ${c3}`);
       let fakeData = {
         simulated : true,
         timestamp : new Date(),
         BME280 : {
           temperature_C : c2,
           temperature_F : c2 * 9 / 5 + 32,
-          humidity : 39.7666,
-          pressure_hPa : 1014.3578,
+          humidity : this.randomDoubleFromInterval(30, 70),
+          pressure_hPa : direction ? 1003.25 + c4 : 1003.25 - c4,
           pressure_inHg : 29.9539,
           altitude_m :  9.2139,
           altitude_ft : 30.2295
@@ -50,10 +55,10 @@ class DevicesSimulated extends DevicesBase {
           lux : 3000 + 250 * Math.random(),
           timestamp : new Date()
         },
-        DS18b20_1 : {
+        DS18B20_1 : {
           temperature_C : 42.3477,
         },
-        DS18b20_2 : {
+        DS18B20_2 : {
           temperature_C : 22.3477,
         },
         DHT22_1 : {
@@ -134,6 +139,10 @@ class DevicesSimulated extends DevicesBase {
 
       resolve(fakeData);
     });
+  }
+
+  randomDoubleFromInterval(min, max) {
+    return Math.random()*(max-min+1)+min;
   }
 }
 

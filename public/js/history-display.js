@@ -3,17 +3,25 @@
 
   Draw some charts to display sensor data over time.
 */
+
 function initHistory() {
 
   const endDate = new Date();
   const startDate = new Date(endDate - 1000 * 3600 * 24); // last 24 hours
 
-  $.get(window.dataSourceUrl + '/sensors/history/' + startDate.toISOString() + '/' + endDate.toISOString(), function(data) {
+  // $.get(window.dataSourceUrl + '/sensors/history/' + startDate.toISOString() + '/' + endDate.toISOString(), function(data) {
+  $.get(window.dataSourceUrl + '/sensors/history/', function(data) {
 
     var temperature = [];
     var humidity = [];
     var pressure = [];
     var lux = [];
+
+    var temperatureOutside = [];
+    var humidityOutside = [];
+    var pressureOutside = [];
+
+    var dataSize = 0;
 
     data.forEach((element, idx) => {
       //if(idx % 5) return; // arbitrary thinning for some nice curve smoothing and faster rendering
@@ -24,7 +32,42 @@ function initHistory() {
       if(element.properties.lux_outside >= 0 && element.properties.lux_outside <= 40000) { // TSL2561 gets blown out in direct sunlight to clean it up
         lux.push({ x : element.timestamp, y : element.properties.lux_outside });
       }
+
+      temperatureOutside.push([new Date(element.timestamp).getTime(), element.properties.temperature_air_outside]);
+      humidityOutside.push([new Date(element.timestamp).getTime(), element.properties.humidity_air_outside]);
+      pressureOutside.push([new Date(element.timestamp).getTime(), element.properties.pressure_air_outside]);
+
+      dataSize++;
     });
+
+    console.log(dataSize);
+
+    var highChartPlotOptions = {
+      area: {
+        fillColor: {
+          linearGradient: {
+            x1: 0,
+            y1: 0,
+            x2: 0,
+            y2: 1
+          },
+          stops: [
+            [0, Highcharts.getOptions().colors[0]],
+            [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+          ]
+        },
+        marker: {
+          radius: 2
+        },
+        lineWidth: 1,
+        states: {
+          hover: {
+            lineWidth: 1
+          }
+        },
+        threshold: null
+      }
+    };
 
     var chartOptions = {
       elements : {
@@ -120,10 +163,136 @@ function initHistory() {
       options : chartOptions
     };
 
-    var temperatureChart = new Chart($('#temperatureChart'), temperatureChartData);    
-    var humidityChart = new Chart($('#humidityChart'), humidityChartData);
-    var pressureChart = new Chart($('#pressureChart'), pressureChartData);
-    var luxChart = new Chart($('#luxChart'), luxChartData);
+    // var temperatureChart = new Chart($('#temperatureChart'), temperatureChartData);    
+    // var humidityChart = new Chart($('#humidityChart'), humidityChartData);
+    // var pressureChart = new Chart($('#pressureChart'), pressureChartData);
+    // var luxChart = new Chart($('#luxChart'), luxChartData);
+
+    var temperatureOutsideChart = new Highcharts.Chart('temperatureOutsideChart', {
+      chart: {
+        zoomType: 'x'
+      },
+      title: {
+        text: 'temperature outside'
+      },
+      subtitle: {
+        text: document.ontouchstart === undefined ? 'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'
+      },
+      xAxis: {
+        type: 'datetime'
+      },
+      yAxis: {
+        title: {
+          text: 'temperature °C'
+        }
+      },
+      legend: {
+        enabled: true
+      },
+      plotOptions: highChartPlotOptions,
+      series: [{
+        type: 'area',
+        name: 'temperature',
+        data: temperatureOutside
+      }]
+    });
+
+    var outsideChart = new Highcharts.Chart('outsideChart', {
+      chart: { 
+        zoomType: 'xy'
+      },
+      title: {
+        text: 'BME outside'
+      },
+      xAxis: {
+        type: 'datetime'
+      },
+      yAxis: [{
+        labels: {
+          format: '{value}°C',
+          style: {
+            color: Highcharts.getOptions().colors[2]
+          }
+        },
+        title: {
+          text: 'Temperature',
+          style: {
+            color: Highcharts.getOptions().colors[2]
+          }
+        },
+        opposite: true
+      }, {
+        gridLineWidth: 0,
+        title: {
+          text: 'Humidity',
+          style: {
+            color: Highcharts.getOptions().colors[0]
+          }
+        },
+        labels: {
+          format: '{value} %',
+          style: {
+            color: Highcharts.getOptions().colors[0]
+          }
+        }
+      }, {
+        gridLineWidth: 0,
+        title: {
+          text: 'Pressure',
+          style: {
+            color: Highcharts.getOptions().colors[1]
+          }
+        },
+        labels: {
+          format: '{value} hPa',
+          style: {
+            color: Highcharts.getOptions().colors[1]
+          }
+        },
+        opposite: true
+      }],
+      tooltip: {
+        shared: true
+      },
+      legend: {
+        layout: 'vertical',
+        align: 'left',
+        x: 80,
+        verticalAlign: 'top',
+        y: 55,
+        floating: true,
+        backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+      },
+      series: [{
+        name: 'Humidity',
+        type: 'column',
+        yAxis: 1,
+        data: humidityOutside,
+        tooltip: {
+          valueSuffix: ' %'
+        }
+      }, {
+        name: 'Pressure',
+        type: 'spline',
+        yAxis: 2,
+        data: pressureOutside,
+        marker: {
+          enabled: false
+        },
+        dashStyle: 'shortDot',
+         tooltip: {
+          valueSuffix: ' hPa'
+        }
+      }, {
+        name: 'Temperature',
+        type: 'spline',
+        data: temperatureOutside,
+         tooltip: {
+          valueSuffix: ' °C'
+        }
+      }]
+    });
+
   }).
   fail(function(xhr, status, error) {
     console.log('Failed to retrieve sensor history! Error ' + xhr.status + ': ' + xhr.responseText);
