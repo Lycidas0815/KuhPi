@@ -85,8 +85,8 @@ class DatabasePublisher {
         const sensorData = new SensorData();
         sensorData.deviceId     = this.deviceId;
         sensorData.timestamp    = _.get(data, 'timestamp', undefined);
-        sensorData.created_at   = new Date();
-        sensorData.modified_at  = new Date();
+        sensorData.created_at   = new Date().toISOString();
+        sensorData.modified_at  = new Date().toISOString();
         sensorData.name         = "fixed";
         // BME280
         sensorData.properties.temperature_air_outside = _.get(data, 'BME280.temperature_C', 0);

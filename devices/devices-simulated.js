@@ -41,7 +41,7 @@ class DevicesSimulated extends DevicesBase {
       //console.log(`Simulated: seconds = ${seconds},\n   c1 = ${c1},\n   c2 = ${c2},\n   c3 = ${c3}`);
       let fakeData = {
         simulated : true,
-        timestamp : new Date(),
+        timestamp : new Date().toISOString(),
         BME280 : {
           temperature_C : c2,
           temperature_F : c2 * 9 / 5 + 32,
