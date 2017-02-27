@@ -94,13 +94,14 @@ class DevicesRPi extends DevicesBase {
         },
 
         (callback) => {
-          let data = this.ds18b20_1.readSensorData();
-          //console.log(`data for sensor ds18b20_1: ${JSON.stringify(data, null, 2)}`);
-          return callback(null, { DS18B20_1 : data });
+          let data = this.ds18b20_1.readSensorData()
+            .then((data) => callback(null, { DS18B20_1 : data }))
+            .catch((err) => callback(null, { DS18B20_1 : { err : err }})),
         },
         (callback) => {
-          let data = this.ds18b20_2.readSensorData();
-          return callback(null, { DS18B20_2 : data });
+          let data = this.ds18b20_2.readSensorData()
+            .then((data) => callback(null, { DS18B20_2 : data }))
+            .catch((err) => callback(null, { DS18B20_2 : { err : err }})),
         },
 
         (callback) => this.tsl2561.readSensorData()
