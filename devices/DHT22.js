@@ -28,8 +28,8 @@ class DHT22 {
   pollingWorker(ms) {
     let data = this.dht22.read(22, this.gpioNo);
     if (data.isValid) {
-      this.humidity = data.humidity.toFixed(2);
-      this.temperature_C = data.temperature.toFixed(2);
+      this.humidity = data.humidity;
+      this.temperature_C = data.temperature;
     }
    
     setTimeout(() => this.pollingWorker(ms), ms); 
