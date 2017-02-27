@@ -10,8 +10,6 @@ class ds18b20 {
   constructor(sensorId) {
     this.sensorId        = sensorId;
     this.ds18b20         = require('ds18b20');
-
-    this.pollingWorker(2000);
   }
 
   readSensorData() {

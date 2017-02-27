@@ -10,7 +10,7 @@
 class DHT22 {
   constructor(gpioNo) {
     this.gpioNo        = gpioNo;
-    this.dht22         = require('node-dht-sensor');
+    this.dht22         = require('dht-sensor');
     this.humidity      = 0;
     this.temperature_C = 0;
 
@@ -27,7 +27,7 @@ class DHT22 {
 
   pollingWorker(ms) {
     let data = this.dht22.read(22, this.gpioNo);
-    if (data.isValid) {
+    if (data.humidity !== 0 || data.temperature !== 0) {
       this.humidity = data.humidity;
       this.temperature_C = data.temperature;
     }
